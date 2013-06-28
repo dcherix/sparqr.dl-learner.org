@@ -1,0 +1,33 @@
+<h1 id="dl-learner-demo-webapp-readme">DL-learner demo webapp Readme</h1>
+<h2 id="start-the-webapp">Start the webapp</h2>
+<p>The tomcat7-maven-plugin were used to create this webapp. To start the webapp just give <code>java -Xms1G -Xmx2G -jar dl-learner-standalone.jar -loggerName slf4j [--options=value]</code>. You can see a list of possibles options by typing <code>java -jar dl-learner-standalone.jar --help</code>.</p>
+<pre><code>usage: java -jar [path to your exec war jar]
+    -ajpPort &lt;ajpPort&gt;                     ajp port to use
+    -clientAuth                            enable client authentication for https
+    -D &lt;arg&gt;                               key=value
+    -extractDirectory &lt;extractDirectory&gt;   path to extract war content, default value: .extract
+    -h,--help                              help
+    -httpPort &lt;httpPort&gt;                   http port to use
+    -httpProtocol &lt;httpProtocol&gt;           http protocol to use: HTTP/1.1 or org.apache.coyote.http11.Http11Nio Protocol
+    -httpsPort &lt;httpsPort&gt;                 https port to use
+    -keyAlias &lt;keyAlias&gt;                   alias from keystore for ssl
+    -loggerName &lt;loggerName&gt;               logger to use: slf4j to use slf4j bridge on top of jul
+    -obfuscate &lt;password&gt;                  obfuscate the password and exit
+    -resetExtract                          clean previous extract directory
+    -serverXmlPath &lt;serverXmlPath&gt;         server.xml to use, optional
+    -uriEncoding &lt;uriEncoding&gt;             connector uriEncoding default ISO-8859-1
+    -X,--debug                             debug
+    </code></pre>
+<h2 id="using-the-webapp">Using the webapp</h2>
+<p>The service is available under <a href="http://sparqr.dl-learner.org/interfaces/rest">http://nlp2rdf/interfaces/rest</a>.</p>
+<p>To use the DL-learner you must past a configuration to the webapp. At example the command: <code>curl --data-urlencode  conf@examples/AristotlePosNeg.conf  &quot;http://nlp2rdf/interfaces/rest&quot;</code> send the AristotlePosNeg configuration to the webapp and wait for the answer of the DL-learner.</p>
+<h2 id="examples">Examples</h2>
+<p>In the folder &quot;examples&quot; are examples config files. All the config files uses the <a href="http://jens-lehmann.org/files/2012/jist_dllearner_sparql.pdf">new SPARQL-component</a>. The SPARQL component enables to work on data located in a triple store, the new SPARQL component improve the performance of the data recovering from triple store.</p>
+<h3 id="aristotleposneg">AristotlePosNeg</h3>
+<p><a href="http://sourceforge.net/p/dl-learner/code/HEAD/tree/trunk/examples/sparqr/AristotlePosNeg.conf">Get config file:</a> <code>curl http://sourceforge.net/p/dl-learner/code/HEAD/tree/trunk/examples/sparqr/AristotlePosNeg.conf?format=raw</code></p>
+<p><code>curl --data-urlencode  conf@examples/AristotlePosNeg.conf  &quot;http://sparqr.dl-learner.org/interfaces/rest&quot;</code></p>
+<p>The AristotlePosNeg example show an example of learning wit positives and negatives examples. The learning problem is based on DBpedia.</p>
+<h3 id="st-george-dragons-players">St George Dragons Players</h3>
+<p><a href="http://sourceforge.net/p/dl-learner/code/HEAD/tree/trunk/examples/sparqr/StGeorge.conf">Get config file:</a> <code>curl http://sourceforge.net/p/dl-learner/code/HEAD/tree/trunk/examples/sparqr/StGeorge.conf?format=raw</code></p>
+<p><code>curl --data-urlencode  conf@examples/StGeorge.conf  &quot;http://sparqr.dl-learner.org/interfaces/rest&quot;</code></p>
+<p>This example uses a list of rugby players of the St George Dragons and some others players. The result is a definition to retrieve all St George Dragons players.</p>
